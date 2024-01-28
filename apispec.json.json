@@ -13,6 +13,9 @@
   "paths": {
     "/categories": {
       "get": {
+        "tags": [
+          "Category API"
+        ],
         "description": "List all Categories",
         "summary": "List all Categories",
         "responses": {
@@ -120,7 +123,9 @@
         }
       },
       "put": {
-        "tags": "Category Api",
+        "tags": [
+          "Category Api"
+        ],
         "summary": "Update Category By Id",
         "description": "Update Category By Id",
         "parameters": [
@@ -155,6 +160,40 @@
                     },
                     "data": {
                       "$ref": "#/components/schemas/Category"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Category API"
+        ],
+        "summary": "Delete Category By Id",
+        "description": "Delete Category By Id",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success Delete Category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
                     }
                   }
                 }
