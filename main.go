@@ -1,8 +1,13 @@
 package main
 
 import (
+	"net/http"
+
+	_ "github.com/go-sql-driver/mysql"
+
 	"github.com/AkhdanFirdaus/belajar-golang-restful-api/app"
 	"github.com/AkhdanFirdaus/belajar-golang-restful-api/controller"
+	"github.com/AkhdanFirdaus/belajar-golang-restful-api/helper"
 	"github.com/AkhdanFirdaus/belajar-golang-restful-api/repository"
 	"github.com/AkhdanFirdaus/belajar-golang-restful-api/service"
 	"github.com/go-playground/validator"
@@ -24,4 +29,12 @@ func main() {
 	router.POST("/api/categories", categoryController.Create)
 	router.PUT("/api/categories/:categoryId", categoryController.Update)
 	router.DELETE("/api/categories/:categoryId", categoryController.Delete)
+
+	server := http.Server{
+		Addr:    "localhost:3000",
+		Handler: router,
+	}
+
+	err := server.ListenAndServe()
+	helper.PanicIfError(err)
 }
